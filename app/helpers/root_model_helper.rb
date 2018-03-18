@@ -1,0 +1,2 @@
+module RootModelHelper
+end
