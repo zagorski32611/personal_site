@@ -91,8 +91,30 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Helvetica", sans-serif}
               </br>
               Additionally, a parent can enroll their student(s) in one or more courses. The mechanics behind this functionality work like so: 
               </br>
-              I created a table that saves the student id and the course id. So, when a parent goes to the 'enrollment' view. 
-
+              I created a table that saves the student id and the course id called enrollments.
             </p>
+          <hr>
+        </div>
+
+        <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-code fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i> Projects </h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b> Helper Methods </b></h5>
+            <p> 
+               The enrollments table only saves the student id and the course id. It's not very helpful! 
+               So, I wrote a method that for each student id, queires the database and 'plucks' the student's first_name (pluck is a method for ActiveRecord, Rails' ORM)
+               This also happens for the course as well. When the enrollments index view loads, the helper methods are called and return the student name and the course title: 
+            </p>
+            <code>
+                def pluck_name(stid)
+                    @name = Student.where(id: stid).pluck(:first_name)
+                    return @name[0]
+                end
+
+                def pluck_course(cid)
+                    @title = Course.where(id: cid).pluck(:title)
+                    return @title[0]
+                end
+            </code>
           <hr>
         </div>
